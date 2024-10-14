@@ -6,6 +6,8 @@ package uniguajira.matchsgame;
 
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
+import java.util.Collections;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,6 +16,25 @@ import javax.swing.JLabel;
  *
  * @author AlexVB
  */
+class CardType {
+    private String id;
+    public int count = 2;
+    public  CardType(String id) {
+        this.id = id;
+    }
+}
+
+class MiniCard extends JButton {
+    public String id;
+    public MiniCard(String id){
+        this.id = id;
+        this.setText(id);
+    }
+    public static void main(String[] args) {
+        
+    }
+}
+
 public class game_scene extends javax.swing.JFrame {
 
     /**
@@ -34,18 +55,30 @@ public class game_scene extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        game_container = new javax.swing.JPanel();
         up_bar_panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        pause_button = new javax.swing.JButton();
+        bottom_row = new javax.swing.JPanel();
         game_grid_panel = new javax.swing.JPanel();
         timer_panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 51));
+        jPanel1.setLayout(new javax.swing.OverlayLayout(jPanel1));
+
         up_bar_panel.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setText("Barra de juego");
+
+        pause_button.setText("p");
+        pause_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pause_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout up_bar_panelLayout = new javax.swing.GroupLayout(up_bar_panel);
         up_bar_panel.setLayout(up_bar_panelLayout);
@@ -54,14 +87,20 @@ public class game_scene extends javax.swing.JFrame {
             .addGroup(up_bar_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pause_button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         up_bar_panelLayout.setVerticalGroup(
             up_bar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(up_bar_panelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(up_bar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(up_bar_panelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(pause_button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         game_grid_panel.setBackground(new java.awt.Color(204, 204, 204));
@@ -92,72 +131,117 @@ public class game_scene extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout bottom_rowLayout = new javax.swing.GroupLayout(bottom_row);
+        bottom_row.setLayout(bottom_rowLayout);
+        bottom_rowLayout.setHorizontalGroup(
+            bottom_rowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottom_rowLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(game_grid_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(timer_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        bottom_rowLayout.setVerticalGroup(
+            bottom_rowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(timer_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(game_grid_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout game_containerLayout = new javax.swing.GroupLayout(game_container);
+        game_container.setLayout(game_containerLayout);
+        game_containerLayout.setHorizontalGroup(
+            game_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bottom_row, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(up_bar_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        game_containerLayout.setVerticalGroup(
+            game_containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, game_containerLayout.createSequentialGroup()
                 .addComponent(up_bar_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(bottom_row, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(game_container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(game_container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void pause_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pause_buttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pause_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
+
     
-    public int size=4;
-    public JButton[] cardJLabels = new JButton[size*size];
+    static void shuffleArray(String[] ar)
+    {
+      Random rnd = new Random();
+      for (int i = ar.length - 1; i > 0; i--)
+      {
+        int index = rnd.nextInt(i + 1);
+        String a = ar[index];
+        ar[index] = ar[i];
+        ar[i] = a;
+      }
+    }
     
+    public int size=6;
+    public MiniCard[] cards = new MiniCard[size*size];
+    
+    public String[] generateIds(){
+        
+        String[] ids = new String[size*size];
+        int counter = 0;
+        
+        while (counter < size*size) {            
+            for (int i = 0; i < 8; i++) {
+                if (i+counter < size*size){
+                    ids[i+counter] = ""+(i+1);
+                }
+            }
+            counter += 8;
+        }
+        
+        shuffleArray(ids);
+        
+        System.out.println(ids);
+        return ids;
+    }
     
     public void generate_grid() {
         game_grid_panel.setLayout(new GridLayout(size, size));
         game_grid_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        
+        String[] ids = generateIds();
+        
         for (int i = 0; i < size*size; i++) {
-            cardJLabels[i] = new JButton("Label "+i);
-            game_grid_panel.add(cardJLabels[i]);
+            cards[i] = new MiniCard(ids[i]);
+            game_grid_panel.add(cards[i]);
         }
         
     }
@@ -195,10 +279,12 @@ public class game_scene extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bottom_row;
+    private javax.swing.JPanel game_container;
     private javax.swing.JPanel game_grid_panel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton pause_button;
     private javax.swing.JPanel timer_panel;
     private javax.swing.JPanel up_bar_panel;
     // End of variables declaration//GEN-END:variables
