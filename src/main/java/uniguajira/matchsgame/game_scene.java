@@ -4,38 +4,42 @@
  */
 package uniguajira.matchsgame;
 
+import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
  *
  * @author AlexVB
  */
-class CardType {
-    private String id;
-    public int count = 2;
-    public  CardType(String id) {
-        this.id = id;
-    }
-}
 
 class MiniCard extends JButton {
     public String id;
     public MiniCard(String id){
         this.id = id;
         this.setText(id);
+        Color color = Color.BLACK;
+        if (id.equals("1")) color = Color.BLUE;
+        if (id.equals("2")) color = Color.CYAN;
+        if (id.equals("3")) color = Color.DARK_GRAY;
+        if (id.equals("4")) color = Color.GREEN;
+        if (id.equals("5")) color = Color.LIGHT_GRAY;
+        if (id.equals("6")) color = Color.MAGENTA;
+        if (id.equals("7")) color = Color.RED;
+        if (id.equals("8")) color = Color.pink;
+
+        this.setBackground(color);
     }
     public static void main(String[] args) {
         
     }
 }
 
-public class game_scene extends javax.swing.JFrame {
+public final class game_scene extends javax.swing.JFrame {
 
     /**
      * Creates new form game_scene
@@ -220,16 +224,17 @@ public class game_scene extends javax.swing.JFrame {
         
         while (counter < size*size) {            
             for (int i = 0; i < 8; i++) {
-                if (i+counter < size*size){
-                    ids[i+counter] = ""+(i+1);
+                if (i*2+counter < size*size-1){
+                    ids[i*2+counter] = ""+(i+1);
+                    ids[i*2+counter+1] = ""+(i+1);
                 }
             }
-            counter += 8;
+            counter += 16;
         }
         
         shuffleArray(ids);
         
-        System.out.println(ids);
+        System.out.println(Arrays.toString(ids));
         return ids;
     }
     
