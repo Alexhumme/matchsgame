@@ -19,20 +19,28 @@ import javax.swing.JButton;
 
 class MiniCard extends JButton {
     public String id;
+    public boolean revealed = false;
     public MiniCard(String id){
         this.id = id;
         this.setText(id);
-        Color color = Color.BLACK;
+    }
+    public void reveal(){
+        revealed = true;
+         Color color = Color.BLACK;
         if (id.equals("1")) color = Color.BLUE;
         if (id.equals("2")) color = Color.CYAN;
         if (id.equals("3")) color = Color.DARK_GRAY;
         if (id.equals("4")) color = Color.GREEN;
         if (id.equals("5")) color = Color.LIGHT_GRAY;
-        if (id.equals("6")) color = Color.MAGENTA;
+        if (id.equals("6")) color = Color.magenta;
         if (id.equals("7")) color = Color.RED;
         if (id.equals("8")) color = Color.pink;
 
         this.setBackground(color);
+    }
+    public void unreveal(){
+        revealed = false;
+        this.setBackground(Color.white);
     }
     public static void main(String[] args) {
         
@@ -214,7 +222,7 @@ public final class game_scene extends javax.swing.JFrame {
       }
     }
     
-    public int size=6;
+    public int size = 4;
     public MiniCard[] cards = new MiniCard[size*size];
     
     public String[] generateIds(){
@@ -276,10 +284,8 @@ public final class game_scene extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new game_scene().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new game_scene().setVisible(true);
         });
     }
 
