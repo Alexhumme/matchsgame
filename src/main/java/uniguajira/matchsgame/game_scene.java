@@ -7,6 +7,8 @@ package uniguajira.matchsgame;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -20,13 +22,15 @@ import javax.swing.JButton;
 class MiniCard extends JButton {
     public String id;
     public boolean revealed = false;
+    public boolean paired = false;
+    
     public MiniCard(String id){
         this.id = id;
-        this.setText(id);
+        this.setBackground(Color.white);
     }
     public void reveal(){
         revealed = true;
-         Color color = Color.BLACK;
+        Color color = Color.BLACK;
         if (id.equals("1")) color = Color.BLUE;
         if (id.equals("2")) color = Color.CYAN;
         if (id.equals("3")) color = Color.DARK_GRAY;
@@ -37,24 +41,43 @@ class MiniCard extends JButton {
         if (id.equals("8")) color = Color.pink;
 
         this.setBackground(color);
+        this.setText(id);
     }
-    public void unreveal(){
-        revealed = false;
+    
+    public void setPaired(){
+        this.paired = true;
+        this.setForeground(Color.green);
         this.setBackground(Color.white);
+        this.setText(":)");
+    }
+    
+    public void unreveal(){
+        if (!this.paired) {
+            revealed = false;
+            this.setBackground(Color.white);
+            this.setText("");
+        }
     }
     public static void main(String[] args) {
         
     }
 }
 
-public final class game_scene extends javax.swing.JFrame {
+public final class game_scene extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form game_scene
      */
-    public game_scene() {
+    public int size = 4;
+    public String theme = "Animales";
+    public boolean time = false;
+    public game_scene(String theme, int size, boolean time) {
         initComponents();
         generate_grid();
+        this.theme = theme;        
+        this.size = size;
+        this.time = time;
+
     }
 
     /**
@@ -222,7 +245,6 @@ public final class game_scene extends javax.swing.JFrame {
       }
     }
     
-    public int size = 6;
     public MiniCard[] cards = new MiniCard[size*size];
     
     public String[] generateIds(){
@@ -251,13 +273,19 @@ public final class game_scene extends javax.swing.JFrame {
         game_grid_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         
         String[] ids = generateIds();
-        System.out.println("Hola este es un test");
         
         for (int i = 0; i < size*size; i++) {
-            cards[i] = new MiniCard(ids[i]);
+            cards[i] = new MiniCard(theme+"_"+ids[i]);
+            cards[i].addActionListener(this);
             game_grid_panel.add(cards[i]);
         }
         
+    }
+    
+    public void unrevealCard(ActionEvent e) {
+        if (e.getSource().getClass() == MiniCard.class){
+            System.out.println("hola");
+        }
     }
     
     public static void main(String args[]) {
@@ -286,7 +314,7 @@ public final class game_scene extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new game_scene().setVisible(true);
+            new game_scene("Animales", 4, false).setVisible(true);
         });
     }
 
@@ -300,4 +328,25 @@ public final class game_scene extends javax.swing.JFrame {
     private javax.swing.JPanel timer_panel;
     private javax.swing.JPanel up_bar_panel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource().getClass() == MiniCard.class){
+            MiniCard clickedCard = null;
+
+            for (MiniCard card : cards)
+            {
+                if (ae.getSource() == card){
+                    clickedCard = card;
+                }
+            }
+            
+            if (clickedCard.revealed){
+                clickedCard.unreveal();
+            } else {
+                clickedCard.reveal();
+            }
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
