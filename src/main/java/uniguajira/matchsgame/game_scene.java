@@ -222,7 +222,7 @@ public final class game_scene extends javax.swing.JFrame {
       }
     }
     
-    public int size = 4;
+    public int size = 6;
     public MiniCard[] cards = new MiniCard[size*size];
     
     public String[] generateIds(){
@@ -251,6 +251,7 @@ public final class game_scene extends javax.swing.JFrame {
         game_grid_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         
         String[] ids = generateIds();
+        System.out.println("Hola este es un test");
         
         for (int i = 0; i < size*size; i++) {
             cards[i] = new MiniCard(ids[i]);
