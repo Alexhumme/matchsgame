@@ -18,52 +18,71 @@ import javax.swing.JButton;
  *
  * @author AlexVB
  */
-
 class MiniCard extends JButton {
+
     public String id;
+    public String theme;
     public boolean revealed = false;
     public boolean paired = false;
-    
-    public MiniCard(String id){
+
+    public MiniCard(String id, String theme) {
         this.id = id;
         this.setBackground(Color.white);
     }
-    public void reveal(){
+
+    public void reveal() {
         revealed = true;
         Color color = Color.BLACK;
-        if (id.equals("1")) color = Color.BLUE;
-        if (id.equals("2")) color = Color.CYAN;
-        if (id.equals("3")) color = Color.DARK_GRAY;
-        if (id.equals("4")) color = Color.GREEN;
-        if (id.equals("5")) color = Color.LIGHT_GRAY;
-        if (id.equals("6")) color = Color.magenta;
-        if (id.equals("7")) color = Color.RED;
-        if (id.equals("8")) color = Color.pink;
+        if (id.equals("1")) {
+            color = Color.BLUE;
+        }
+        if (id.equals("2")) {
+            color = Color.CYAN;
+        }
+        if (id.equals("3")) {
+            color = Color.DARK_GRAY;
+        }
+        if (id.equals("4")) {
+            color = Color.GREEN;
+        }
+        if (id.equals("5")) {
+            color = Color.LIGHT_GRAY;
+        }
+        if (id.equals("6")) {
+            color = Color.magenta;
+        }
+        if (id.equals("7")) {
+            color = Color.RED;
+        }
+        if (id.equals("8")) {
+            color = Color.pink;
+        }
 
         this.setBackground(color);
         this.setText(id);
     }
-    
-    public void setPaired(){
+
+    public void setPaired() {
         this.paired = true;
         this.setForeground(Color.green);
         this.setBackground(Color.white);
         this.setText(":)");
     }
-    
-    public void unreveal(){
+
+    public void unreveal() {
         if (!this.paired) {
             revealed = false;
             this.setBackground(Color.white);
             this.setText("");
         }
     }
+
     public static void main(String[] args) {
-        
+
     }
 }
 
-public final class game_scene extends javax.swing.JFrame implements ActionListener{
+public final class game_scene extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form game_scene
@@ -71,13 +90,16 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     public int size = 4;
     public String theme = "Animales";
     public boolean time = false;
+
+    public MiniCard[] pair = new MiniCard[2];
+    public MiniCard[] cards = new MiniCard[size * size];
+
     public game_scene(String theme, int size, boolean time) {
         initComponents();
         generate_grid();
-        this.theme = theme;        
+        this.theme = theme;
         this.size = size;
         this.time = time;
-
     }
 
     /**
@@ -231,63 +253,54 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     /**
      * @param args the command line arguments
      */
+    // funcion que genera un vector de ids en pares
+    public String[] generateIds() {
 
-    
-    static void shuffleArray(String[] ar)
-    {
-      Random rnd = new Random();
-      for (int i = ar.length - 1; i > 0; i--)
-      {
-        int index = rnd.nextInt(i + 1);
-        String a = ar[index];
-        ar[index] = ar[i];
-        ar[i] = a;
-      }
-    }
-    
-    public MiniCard[] cards = new MiniCard[size*size];
-    
-    public String[] generateIds(){
-        
-        String[] ids = new String[size*size];
+        String[] ids = new String[size * size];
         int counter = 0;
-        
-        while (counter < size*size) {            
+
+        while (counter < size * size) {
             for (int i = 0; i < 8; i++) {
-                if (i*2+counter < size*size-1){
-                    ids[i*2+counter] = ""+(i+1);
-                    ids[i*2+counter+1] = ""+(i+1);
+                if (i * 2 + counter < size * size - 1) {
+                    ids[i * 2 + counter] = "" + (i + 1);
+                    ids[i * 2 + counter + 1] = "" + (i + 1);
                 }
             }
             counter += 16;
         }
-        
+
         shuffleArray(ids);
-        
+
         System.out.println(Arrays.toString(ids));
         return ids;
     }
-    
+
+    // funcioin que revuelve los ids
+    static void shuffleArray(String[] ar) {
+        Random rnd = new Random();
+        for (int i = ar.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            String a = ar[index];
+            ar[index] = ar[i];
+            ar[i] = a;
+        }
+    }
+
+    // funcion que genera los botones del juego
     public void generate_grid() {
         game_grid_panel.setLayout(new GridLayout(size, size));
         game_grid_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        
+
         String[] ids = generateIds();
-        
-        for (int i = 0; i < size*size; i++) {
-            cards[i] = new MiniCard(theme+"_"+ids[i]);
+
+        for (int i = 0; i < size * size; i++) {
+            cards[i] = new MiniCard(ids[i], theme);
             cards[i].addActionListener(this);
             game_grid_panel.add(cards[i]);
         }
-        
+
     }
-    
-    public void unrevealCard(ActionEvent e) {
-        if (e.getSource().getClass() == MiniCard.class){
-            System.out.println("hola");
-        }
-    }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -329,24 +342,29 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     private javax.swing.JPanel up_bar_panel;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource().getClass() == MiniCard.class){
-            MiniCard clickedCard = null;
-
-            for (MiniCard card : cards)
-            {
-                if (ae.getSource() == card){
-                    clickedCard = card;
+    // funciones de evento (botones)
+    public void handleMiniCardClick(MiniCard clickedCard) {
+        if (clickedCard.revealed) {
+            clickedCard.unreveal();
+        } else {
+            clickedCard.reveal();
+            for (MiniCard paired : pair) {
+                if (paired == null) {
+                    paired = clickedCard;
+                    break;
                 }
             }
-            
-            if (clickedCard.revealed){
-                clickedCard.unreveal();
-            } else {
-                clickedCard.reveal();
-            }
         }
+    }
+
+    @Override
+    // cuando detecte que se realizó una accion
+    public void actionPerformed(ActionEvent ae) {
+        // si la accion se realizó en una MiniCard
+        if (ae.getSource().getClass() == MiniCard.class) {
+            handleMiniCardClick((MiniCard) ae.getSource()); // maneja la accion
+        }
+
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
