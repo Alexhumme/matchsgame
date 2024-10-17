@@ -232,7 +232,6 @@ private int tamaño=4;
            }
        }
        
-        // TODO add your handling code here:
     }//GEN-LAST:event_btn_aplicartmñActionPerformed
 
     /**
