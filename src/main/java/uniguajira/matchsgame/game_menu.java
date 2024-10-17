@@ -39,7 +39,9 @@ public class game_menu extends javax.swing.JFrame {
         btn_aplicartmñ = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 204, 255));
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(153, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         TITULO.setBackground(new java.awt.Color(255, 0, 102));
         TITULO.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
@@ -187,33 +189,38 @@ public class game_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_tamañocmbActionPerformed
 
     private void PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayActionPerformed
-game_scene juego= new game_scene(tema,tamaño,tiempo);
+game_scene juego= new game_scene(tema,tamaño,tiempo1);
 juego.setVisible(true);
     }//GEN-LAST:event_PlayActionPerformed
 
     private void trj_temasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trj_temasActionPerformed
 
     }//GEN-LAST:event_trj_temasActionPerformed
-
+private boolean tiempo1=true;
     private void tiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoActionPerformed
-if (tiempo.isSelected()){
+    
+        if (tiempo.isSelected()){
+            tiempo1=true;
             tiempo.setText("Con tiempo");
            
 }else{
     tiempo.setText("sin tiempo");
+    tiempo1=false;
 }
         // TODO add your handling code here:
     }//GEN-LAST:event_tiempoActionPerformed
     private String tema = "Animales";
     private void btn_aplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarActionPerformed
-    tema=trj_temas.getItemAt(0);
+btn_aplicar.setText("Aplicado");
+        tema=trj_temas.getItemAt(0);
    
 
 
     }//GEN-LAST:event_btn_aplicarActionPerformed
 private int tamaño=4;
     private void btn_aplicartmñActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicartmñActionPerformed
-       if (tamañocmb.getItemAt(0).equals("4x4")){
+      btn_aplicartmñ.setText("Aplicado");
+        if (tamañocmb.getItemAt(0).equals("4x4")){
         tamaño=4;   
        }else{
            if (tamañocmb.getItemAt(0).equals("6x6")){
