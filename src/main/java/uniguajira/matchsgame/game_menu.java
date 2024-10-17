@@ -27,26 +27,41 @@ public class game_menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jProgressBar1 = new javax.swing.JProgressBar();
-        TITULO = new javax.swing.JLabel();
-        trj_temas = new javax.swing.JComboBox<>();
-        tamañocmb = new javax.swing.JComboBox<>();
-        tiempo = new javax.swing.JToggleButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        tema_panel = new javax.swing.JPanel();
         Tp_carta = new javax.swing.JLabel();
-        Tm_matriz = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        Play = new javax.swing.JButton();
+        trj_temas = new javax.swing.JComboBox<>();
         btn_aplicar = new javax.swing.JButton();
+        tamaño_panel = new javax.swing.JPanel();
+        Tm_matriz = new javax.swing.JLabel();
+        tamañocmb = new javax.swing.JComboBox<>();
         btn_aplicartmñ = new javax.swing.JButton();
+        tiempo_panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        tiempo = new javax.swing.JToggleButton();
+        Play = new javax.swing.JButton();
+        TITULO = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(153, 0, 0));
+        setBackground(new java.awt.Color(153, 153, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
-        TITULO.setBackground(new java.awt.Color(255, 0, 102));
-        TITULO.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
-        TITULO.setForeground(new java.awt.Color(255, 51, 102));
-        TITULO.setText("EMPAREJADOS");
+        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Desktop.background"));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setOpaque(false);
+
+        tema_panel.setMaximumSize(new java.awt.Dimension(104, 82));
+        tema_panel.setMinimumSize(new java.awt.Dimension(104, 82));
+        tema_panel.setName(""); // NOI18N
+        tema_panel.setOpaque(false);
+        tema_panel.setPreferredSize(new java.awt.Dimension(104, 82));
+
+        Tp_carta.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        Tp_carta.setText("Tipo Carta");
 
         trj_temas.setBackground(new java.awt.Color(0, 204, 204));
         trj_temas.setEditable(true);
@@ -60,55 +75,56 @@ public class game_menu extends javax.swing.JFrame {
             }
         });
 
-        tamañocmb.setBackground(new java.awt.Color(0, 204, 204));
-        tamañocmb.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
-        tamañocmb.setForeground(new java.awt.Color(255, 255, 255));
-        tamañocmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4X4", "6X6", "8X8" }));
-        tamañocmb.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 255, 204), new java.awt.Color(0, 153, 153), new java.awt.Color(204, 255, 255), new java.awt.Color(0, 153, 153)));
-        tamañocmb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tamañocmbActionPerformed(evt);
-            }
-        });
-
-        tiempo.setBackground(new java.awt.Color(0, 204, 204));
-        tiempo.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
-        tiempo.setForeground(new java.awt.Color(255, 255, 255));
-        tiempo.setText("Tiempo");
-        tiempo.setToolTipText("");
-        tiempo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 255, 204), new java.awt.Color(0, 153, 153), new java.awt.Color(204, 255, 255), new java.awt.Color(102, 255, 204)));
-        tiempo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tiempoActionPerformed(evt);
-            }
-        });
-
-        Tp_carta.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
-        Tp_carta.setText("Tipo Carta");
-
-        Tm_matriz.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
-        Tm_matriz.setText("Tamaño");
-
-        jLabel1.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
-        jLabel1.setText("Tiempo");
-
-        Play.setBackground(new java.awt.Color(255, 0, 102));
-        Play.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
-        Play.setForeground(new java.awt.Color(255, 255, 255));
-        Play.setText("JUGAR");
-        Play.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 51, 153), new java.awt.Color(255, 0, 153), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204)));
-        Play.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlayActionPerformed(evt);
-            }
-        });
-
         btn_aplicar.setBackground(new java.awt.Color(255, 255, 204));
         btn_aplicar.setFont(new java.awt.Font("OCR A Extended", 1, 12)); // NOI18N
         btn_aplicar.setText("Aplicar");
         btn_aplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_aplicarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout tema_panelLayout = new javax.swing.GroupLayout(tema_panel);
+        tema_panel.setLayout(tema_panelLayout);
+        tema_panelLayout.setHorizontalGroup(
+            tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tema_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Tp_carta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tema_panelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(btn_aplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        tema_panelLayout.setVerticalGroup(
+            tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tema_panelLayout.createSequentialGroup()
+                .addComponent(Tp_carta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_aplicar)
+                .addGap(0, 0, 0))
+        );
+
+        tamaño_panel.setMaximumSize(new java.awt.Dimension(104, 82));
+        tamaño_panel.setMinimumSize(new java.awt.Dimension(104, 82));
+        tamaño_panel.setOpaque(false);
+
+        Tm_matriz.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        Tm_matriz.setText("Tamaño: 4");
+
+        tamañocmb.setBackground(new java.awt.Color(0, 204, 204));
+        tamañocmb.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        tamañocmb.setForeground(new java.awt.Color(255, 255, 255));
+        tamañocmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "4X4", "6X6", "8X8" }));
+        tamañocmb.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 255, 204), new java.awt.Color(0, 153, 153), new java.awt.Color(204, 255, 255), new java.awt.Color(0, 153, 153)));
+        tamañocmb.setMinimumSize(new java.awt.Dimension(72, 27));
+        tamañocmb.setPreferredSize(new java.awt.Dimension(72, 27));
+        tamañocmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tamañocmbActionPerformed(evt);
             }
         });
 
@@ -121,65 +137,144 @@ public class game_menu extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout tamaño_panelLayout = new javax.swing.GroupLayout(tamaño_panel);
+        tamaño_panel.setLayout(tamaño_panelLayout);
+        tamaño_panelLayout.setHorizontalGroup(
+            tamaño_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Tm_matriz)
+            .addComponent(tamañocmb, 0, 104, Short.MAX_VALUE)
+            .addComponent(btn_aplicartmñ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        tamaño_panelLayout.setVerticalGroup(
+            tamaño_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tamaño_panelLayout.createSequentialGroup()
+                .addComponent(Tm_matriz)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tamañocmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(btn_aplicartmñ))
+        );
+
+        tiempo_panel.setMaximumSize(new java.awt.Dimension(104, 82));
+        tiempo_panel.setMinimumSize(new java.awt.Dimension(104, 82));
+        tiempo_panel.setOpaque(false);
+        tiempo_panel.setPreferredSize(new java.awt.Dimension(104, 82));
+
+        jLabel1.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        jLabel1.setText("Tiempo");
+
+        tiempo.setBackground(new java.awt.Color(0, 204, 204));
+        tiempo.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        tiempo.setForeground(new java.awt.Color(255, 255, 255));
+        tiempo.setText("Sin tiempo");
+        tiempo.setToolTipText("");
+        tiempo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 255, 204), new java.awt.Color(0, 153, 153), new java.awt.Color(204, 255, 255), new java.awt.Color(102, 255, 204)));
+        tiempo.setMaximumSize(new java.awt.Dimension(87, 27));
+        tiempo.setMinimumSize(new java.awt.Dimension(87, 27));
+        tiempo.setPreferredSize(new java.awt.Dimension(87, 27));
+        tiempo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tiempoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout tiempo_panelLayout = new javax.swing.GroupLayout(tiempo_panel);
+        tiempo_panel.setLayout(tiempo_panelLayout);
+        tiempo_panelLayout.setHorizontalGroup(
+            tiempo_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tiempo_panelLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(tiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+        );
+        tiempo_panelLayout.setVerticalGroup(
+            tiempo_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tiempo_panelLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        Play.setBackground(new java.awt.Color(255, 0, 102));
+        Play.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
+        Play.setForeground(new java.awt.Color(255, 255, 255));
+        Play.setText("JUGAR");
+        Play.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 51, 153), new java.awt.Color(255, 0, 153), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204)));
+        Play.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlayActionPerformed(evt);
+            }
+        });
+
+        TITULO.setBackground(new java.awt.Color(255, 0, 102));
+        TITULO.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
+        TITULO.setForeground(new java.awt.Color(255, 51, 102));
+        TITULO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TITULO.setText("EMPAREJADOS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TITULO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(tema_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tamaño_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(36, 36, 36)
+                        .addComponent(tiempo_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(TITULO, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tema_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(tiempo_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tamaño_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(Play, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(TITULO)
-                .addGap(186, 186, 186))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(Tp_carta)
-                        .addGap(84, 84, 84)
-                        .addComponent(Tm_matriz)
-                        .addGap(0, 24, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tamañocmb, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btn_aplicar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_aplicartmñ)
-                            .addComponent(Play, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(TITULO, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Tp_carta)
-                    .addComponent(Tm_matriz)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(trj_temas)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tamañocmb)
-                        .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_aplicar)
-                    .addComponent(btn_aplicartmñ))
-                .addGap(18, 18, 18)
-                .addComponent(Play, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -189,49 +284,42 @@ public class game_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_tamañocmbActionPerformed
 
     private void PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayActionPerformed
-game_scene juego= new game_scene(tema,tamaño,tiempo1);
-juego.setVisible(true);
+        game_scene juego = new game_scene(tema, tamaño, tiempo1);
+        juego.setVisible(true);
     }//GEN-LAST:event_PlayActionPerformed
 
     private void trj_temasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trj_temasActionPerformed
 
     }//GEN-LAST:event_trj_temasActionPerformed
-private boolean tiempo1=true;
+    private boolean tiempo1 = true;
     private void tiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoActionPerformed
-    
-        if (tiempo.isSelected()){
-            tiempo1=true;
+        if (tiempo.isSelected()) {
+            tiempo1 = true;
             tiempo.setText("Con tiempo");
-           
-}else{
-    tiempo.setText("sin tiempo");
-    tiempo1=false;
-}
-        // TODO add your handling code here:
+
+        } else {
+            tiempo.setText("sin tiempo");
+            tiempo1 = false;
+        }
     }//GEN-LAST:event_tiempoActionPerformed
     private String tema = "Animales";
     private void btn_aplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarActionPerformed
-btn_aplicar.setText("Aplicado");
-        tema=trj_temas.getItemAt(0);
-   
-
-
+        btn_aplicar.setText("Aplicado");
+        tema = trj_temas.getItemAt(0);
     }//GEN-LAST:event_btn_aplicarActionPerformed
-private int tamaño=4;
+    private int tamaño = 4;
     private void btn_aplicartmñActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicartmñActionPerformed
-      btn_aplicartmñ.setText("Aplicado");
-        if (tamañocmb.getItemAt(0).equals("4x4")){
-        tamaño=4;   
-       }else{
-           if (tamañocmb.getItemAt(0).equals("6x6")){
-               tamaño=6;
-           }else{
-               if (tamañocmb.getItemAt(0).equals("8x8")){
-                   tamaño=8;
-               }
-           }
-       }
-       
+        btn_aplicartmñ.setText("Aplicado");
+        if (tamañocmb.getSelectedItem().equals("4X4")) {
+            tamaño = 4;
+        }
+        if (tamañocmb.getSelectedItem().equals("6X6")) {
+            tamaño = 6;
+        }
+        if (tamañocmb.getSelectedItem().equals("8X8")) {
+            tamaño = 8;
+        }
+        Tm_matriz.setText("Tamaño: " + tamaño);
     }//GEN-LAST:event_btn_aplicartmñActionPerformed
 
     /**
@@ -277,9 +365,14 @@ private int tamaño=4;
     private javax.swing.JButton btn_aplicar;
     private javax.swing.JButton btn_aplicartmñ;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JPanel tamaño_panel;
     private javax.swing.JComboBox<String> tamañocmb;
+    private javax.swing.JPanel tema_panel;
     private javax.swing.JToggleButton tiempo;
+    private javax.swing.JPanel tiempo_panel;
     private javax.swing.JComboBox<String> trj_temas;
     // End of variables declaration//GEN-END:variables
 }

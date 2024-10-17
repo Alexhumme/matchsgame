@@ -87,19 +87,32 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     /**
      * Creates new form game_scene
      */
-    public int size = 4;
-    public String theme = "Animales";
-    public boolean time = false;
+    public int size;
+    public String theme;
+    public boolean time;
 
     public MiniCard[] pair = new MiniCard[2];
-    public MiniCard[] cards = new MiniCard[size * size];
+    public MiniCard[] cards;
 
     public game_scene(String theme, int size, boolean time) {
-        initComponents();
-        generate_grid();
         this.theme = theme;
         this.size = size;
         this.time = time;
+        this.cards = new MiniCard[size * size];
+        initComponents();
+        System.out.println("size antes:" + size);
+        generate_grid();
+        System.out.println("size despues: "+size);
+    }
+    
+    public game_scene() {
+        this.theme = "Animales";
+        this.size = 6;
+        this.time = true;
+        initComponents();
+        System.out.println("size antes:" + size);
+        generate_grid();
+        System.out.println("size despues: "+size);
     }
 
     /**
@@ -288,11 +301,13 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
 
     // funcion que genera los botones del juego
     public void generate_grid() {
+        System.out.println("size durante : "+size);
         game_grid_panel.setLayout(new GridLayout(size, size));
         game_grid_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
         String[] ids = generateIds();
 
+        System.out.println("size durante 2: "+size);
         for (int i = 0; i < size * size; i++) {
             cards[i] = new MiniCard(ids[i], theme);
             cards[i].addActionListener(this);
@@ -327,7 +342,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new game_scene("Animales", 4, false).setVisible(true);
+            new game_scene().setVisible(true);
         });
     }
 
