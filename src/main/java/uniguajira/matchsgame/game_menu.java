@@ -11,8 +11,9 @@ import java.awt.Image;
  * @author MARIA JOSE
  */
 public class game_menu extends javax.swing.JFrame {
- 
+ fondovent fondo= new fondovent();
     public game_menu() {
+        this.setContentPane(fondo);
         initComponents();
     }
    
@@ -312,7 +313,7 @@ public class game_menu extends javax.swing.JFrame {
     private String tema = "Animales";
     private void btn_aplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicarActionPerformed
         btn_aplicar.setText("Aplicado");
-        tema = trj_temas.getItemAt(0);
+        tema = trj_temas.getSelectedItem().toString();
     }//GEN-LAST:event_btn_aplicarActionPerformed
     private int tamaño = 4;
     private void btn_aplicartmñActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aplicartmñActionPerformed
@@ -382,5 +383,14 @@ public class game_menu extends javax.swing.JFrame {
     private javax.swing.JPanel tiempo_panel;
     private javax.swing.JComboBox<String> trj_temas;
     // End of variables declaration//GEN-END:variables
-
+class fondovent extends JPanel {
+    private Image imagen;
+    @Override
+    public void paint (Graphics g){
+        imagen=new ImageIcon(getClass().getResource("/Images.interface/imagen.png")).getImage();
+        g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+        setOpaque(false);
+        super.paint(g);
+    }
+}
 }
