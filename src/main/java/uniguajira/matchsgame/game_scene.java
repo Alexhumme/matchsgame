@@ -21,20 +21,25 @@ import javax.swing.border.LineBorder;
  *
  * @author AlexVB
  */
+// las tarjetitas tienen que ser su propia clase aparte para controlar sus estados
 class MiniCard extends JButton {
 
+    // el id es el que se compara para saber si son iguales
     public String id;
     public String theme;
     public boolean revealed = false;
     public boolean paired = false;
 
+    // este color es un gris azulado para cuando esten ocultas
     Color bgColor = new java.awt.Color(204, 204, 255);
 
+   
     public MiniCard(String id, String theme) {
+        // poner el id, color de fondo, fuente pixelada, y el borde
         this.id = id;
         this.setBackground(bgColor);
         this.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 24));
-        this.setBorder(
+        this.setBorder( // este codigo le coloca el borde, no encontre como ponerlo mas simple
                 javax.swing.BorderFactory.createCompoundBorder(
                         javax.swing.BorderFactory.createLineBorder(Color.BLACK, 2),
                         javax.swing.BorderFactory.createBevelBorder(
@@ -42,7 +47,8 @@ class MiniCard extends JButton {
                 ));
     }
 
-    public void reveal() {
+    public void reveal() { 
+        // cuando se revele cambia su color de fondo y mustra su id
         revealed = true;
         Color color = Color.BLACK;
         if (id.equals("1")) {
@@ -75,6 +81,8 @@ class MiniCard extends JButton {
     }
 
     public void unreveal() {
+        // cuando se oculte, solo si no ha sido emparejada
+        // cambia el fondo y quita el texto
         if (!this.paired) {
             revealed = false;
             this.setBackground(bgColor);
@@ -83,7 +91,9 @@ class MiniCard extends JButton {
     }
 
     public void match() {
+        // cuando encuentre su match
         paired = true;
+        // cambia su color de borde
         this.setBorderPainted(true);
 
         this.setBorder(javax.swing.BorderFactory.createCompoundBorder(
@@ -91,15 +101,18 @@ class MiniCard extends JButton {
                 javax.swing.BorderFactory.createBevelBorder(
                         javax.swing.border.BevelBorder.RAISED, null, null, null, Color.GREEN)));
 
+        // y desactiva el la tarjeta
         this.setEnabled(false);
     }
 
     public void unmatch() {
+        // cuando la pareja no sea correcta ponle borde rojo
         this.setBorder(javax.swing.BorderFactory.createCompoundBorder(
                 javax.swing.BorderFactory.createLineBorder(Color.BLACK, 2),
                 javax.swing.BorderFactory.createBevelBorder(
                         javax.swing.border.BevelBorder.RAISED, null, null, null, Color.RED)));
 
+        // y despues de medio segundo (con un temporizador) ocultala
         Timer timer = new Timer(500, e -> {
             this.paired = false;
 
@@ -138,6 +151,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     public MiniCard[] cards;
 
     public game_scene(String theme, int size, boolean timer) {
+        // recibir los valores que le mande el menu
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.theme = theme;
         this.size = size;
@@ -147,6 +161,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     }
 
     public game_scene() {
+        // valores por defecto
         this.theme = "Animales";
         this.size = 4;
         this.use_timer = false;
@@ -154,7 +169,8 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         start_game();
     }
 
-    public void start_game() {
+    // como de de estar el juego cada vez que empiece una partida
+    public void start_game() { 
         state_panel.setBackground(new java.awt.Color(204, 204, 255));
         state_label.setForeground(Color.BLACK);
         state_label.setText("encuentra las parejas");
@@ -163,39 +179,51 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         this.cards = null;
         this.cards = new MiniCard[size * size];
         this.pair = null;
-        this.pair = new MiniCard[2];
+        this.pair = new MiniCard[2]; // aqui se guardan las que estan visibles y no han sido completadas
         this.time = 120;
-        generate_grid();
+        generate_grid(); // genera la cuadricula
         if (use_timer) {
             this.start_timer();
         }
     }
 
+    // lo que debe hacer el temporizador
     public void timer_event() {
+        // cambiar colores si queda poco tiempo
         if (time == 60) {
             time_lable.setForeground(Color.yellow);
         }
         if (time == 30) {
             time_lable.setForeground(Color.red);
         }
+        // actualizar barra de progreso
+        timer_progressbar.setValue(time);
+        // actualizar cronometro (el texto se formatea para que paresca una hora
         time_lable.setText(
                 String.format("%02d", (int) (time / 60)) + ":"
                 + String.format("%02d", (time - 60 * (int) (time / 60)))
         );
+        // lo que hacer si se acaba el tiempo
         if (time <= 0) {
+            // desactiva todas las tarjetas
             for (MiniCard card : cards) {
                 card.setEnabled(false);
             }
+            // muestra el mensaje de perdiste
             state_label.setForeground(Color.WHITE);
             state_panel.setBackground(Color.red);
             state_label.setText("Perdiste");
+            // deten el temporizador
             timer.stop();
         }
+        // reduce el tiempo
         time--;
     }
-
+    
+    // el temporizador ejecuta l funcion de arriba cada segundo (1000 milisegundos)
     public Timer timer = new Timer(1000, e -> timer_event());
 
+    // iniciar a contar los seggundos
     public void start_timer() {
         time_lable.setText("__:__");
         time_lable.setForeground(Color.green);
@@ -224,6 +252,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         reset_button = new javax.swing.JButton();
         exit_button = new javax.swing.JButton();
         time_lable = new javax.swing.JLabel();
+        timer_progressbar = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -279,7 +308,9 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         timer_panel.setBackground(new java.awt.Color(204, 204, 255));
         timer_panel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2)));
 
-        pause_button.setBackground(new java.awt.Color(153, 153, 255));
+        pause_button.setBackground(new java.awt.Color(0, 102, 255));
+        pause_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
+        pause_button.setText("pausa");
         pause_button.setToolTipText("");
         pause_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(255, 255, 255))));
         pause_button.setOpaque(true);
@@ -289,7 +320,9 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
             }
         });
 
-        reset_button.setBackground(new java.awt.Color(153, 255, 153));
+        reset_button.setBackground(new java.awt.Color(51, 255, 51));
+        reset_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
+        reset_button.setText("reiniciar");
         reset_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         reset_button.setOpaque(true);
         reset_button.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +331,9 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
             }
         });
 
-        exit_button.setBackground(new java.awt.Color(255, 153, 153));
+        exit_button.setBackground(new java.awt.Color(255, 0, 51));
+        exit_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
+        exit_button.setText("salir");
         exit_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         exit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,6 +349,11 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         time_lable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         time_lable.setOpaque(true);
 
+        timer_progressbar.setMaximum(120);
+        timer_progressbar.setOrientation(1);
+        timer_progressbar.setValue(120);
+        timer_progressbar.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+
         javax.swing.GroupLayout timer_panelLayout = new javax.swing.GroupLayout(timer_panel);
         timer_panel.setLayout(timer_panelLayout);
         timer_panelLayout.setHorizontalGroup(
@@ -322,11 +362,14 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
                 .addContainerGap()
                 .addGroup(timer_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(reset_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pause_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(exit_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(timer_panelLayout.createSequentialGroup()
                         .addComponent(time_lable, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(pause_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exit_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timer_panelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(timer_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         timer_panelLayout.setVerticalGroup(
@@ -338,7 +381,9 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
                 .addComponent(reset_button, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(timer_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(time_lable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(3, 3, 3))
         );
@@ -409,17 +454,18 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     }//GEN-LAST:event_reset_buttonActionPerformed
 
     private void exit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_buttonActionPerformed
-        this.dispose();
+        this.dispose(); // esto cierra el frame
     }//GEN-LAST:event_exit_buttonActionPerformed
 
     private void pause_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pause_buttonActionPerformed
         // pausar juego
-        pause = !pause;
+        pause = !pause; // cambia el estado de pausa
         if (pause) {
             timer.stop();
         } else {
             timer.start();
         }
+        // desactiva/activa las tarjetas que NO esten emparejadas (esas se debe quedar desactivadas)
         for (MiniCard card : cards) {
             if (!card.paired) {
                 card.setEnabled(!pause);
@@ -430,15 +476,17 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     /**
      * @param args the command line arguments
      */
-    // funcion que genera un vector de ids en pares
+    // funcion que genera un vector de ids en pares [1,1,2,2,3,3,...etc] y los revuelve
     public String[] generateIds() {
-
+        
         String[] ids = new String[size * size];
-        int counter = 0;
+        int counter = 0; // contador que aumenta de 16 en 16
 
         while (counter < size * size) {
-            for (int i = 0; i < 8; i++) {
-                if (i * 2 + counter < size * size - 1) {
+            for (int i = 0; i < 8; i++) { // añade 8 veces
+                // si no nos hemos pasado del tamaño del vector de tarjetas
+                if (i * 2 + counter < size * size - 1) { 
+                    // añade 2 ids iguales enla posicion actual y la que sigue
                     ids[i * 2 + counter] = "" + (i + 1);
                     ids[i * 2 + counter + 1] = "" + (i + 1);
                 }
@@ -446,42 +494,42 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
             counter += 16;
         }
 
-        shuffleArray(ids);
+        shuffleArray(ids); // y revuelvelos
 
-        System.out.println(Arrays.toString(ids));
         return ids;
     }
 
-    // funcioin que revuelve los ids
+    // funcion que revuelve los elementos de un arreglo
     static void shuffleArray(String[] ar) {
-        Random rnd = new Random();
-        for (int i = ar.length - 1; i > 0; i--) {
-            int index = rnd.nextInt(i + 1);
-            String a = ar[index];
-            ar[index] = ar[i];
-            ar[i] = a;
+        Random rnd = new Random(); // ramdomizador
+        // para cada una de los elementos del arreglo
+        for (int i = ar.length - 1; i > 0; i--) { // empieza desde el final y hasta la posicion 0
+            int index = rnd.nextInt(i + 1); // gener un index aleatorio entre 0 y la posicion actual
+            String a = ar[index]; // guarda el valor de la posicion actual
+            ar[index] = ar[i]; // en la posicion actual pon el de la posicion aleatoria
+            ar[i] = a; // en la posicion aleatoria pon el actual
         }
     }
 
     // funcion que genera los botones del juego
     public void generate_grid() {
-        // indicale al panel del juego vacio que será una grilla de nfilasxncolumnas
+        // indicale al panel del juego vacio que será una cuadricula 
         // Vaciar el panel
         game_grid_panel.removeAll();
 
         // Actualizar el panel
         game_grid_panel.revalidate();
         game_grid_panel.repaint();
-        game_grid_panel.setLayout(new GridLayout(size, size));
+        game_grid_panel.setLayout(new GridLayout(size, size)); // esta es la linea que lo vuelve cuadricula
         game_grid_panel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
-        // genera el arreglo con los ids
+        // genera el arreglo con los ids aleatorios
         String[] ids = generateIds();
 
         for (int i = 0; i < size * size; i++) {
             // añade las tarjetas la lista de tarjetas y asignales un id
             cards[i] = new MiniCard(ids[i], theme);
-            // añade a cada terjeta el lector de eventos
+            // añade a cada terjeta el lector de eventos del JFrame
             cards[i].addActionListener(this);
             //añade cada tarjeta al panel
             game_grid_panel.add(cards[i]);
@@ -531,10 +579,12 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     private javax.swing.JPanel state_panel;
     private javax.swing.JLabel time_lable;
     private javax.swing.JPanel timer_panel;
+    private javax.swing.JProgressBar timer_progressbar;
     // End of variables declaration//GEN-END:variables
 
-    // funciones de evento (botones)
-    public void handleMiniCardClick(MiniCard clickedCard) {
+    // funciones de evento (tarjetas)
+    // funcion que maneja la tarjeta a la que le des click
+    public void handleMiniCardClick(MiniCard clickedCard) { 
         // si la tareta ya esta revelada
         if (clickedCard.revealed) {
             // ocultala
@@ -561,36 +611,36 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
 
             // si toda la pareja esta ocupada
             if (pair[0] != null && pair[1] != null) {
-                // si el id de ambas tarjetas en la pareja es igua
+                // si el id de ambas tarjetas en la pareja es igual
                 if (pair[0].id.equals(pair[1].id)) {
                     // ponlas en match
                     pair[0].match();
                     pair[1].match();
-                    // y quitalas de la pareja
-                    pair[0] = null;
-                    pair[1] = null;
+                    
                     // y si no coinciden
                 } else {
                     // pon la animacion de error
                     pair[0].unmatch();
                     pair[1].unmatch();
 
-                    // y quitalas de la pareja
-                    pair[0] = null;
-                    pair[1] = null;
                 }
+                // y quitalas de la pareja
+                pair[0] = null;
+                pair[1] = null;
 
             }
         }
 
         // verificar si ya ganaste
         win = true;
-        for (int i = 0; i < size * size; i++) {
+        for (int i = 0; i < size * size; i++) { 
+            // si se encuentra una tarjeta sin pareja es porque no has ganado
             if (cards[i] == null || !cards[i].paired) {
                 win = false;
                 break;
             }
         }
+        // si ganate deten el temporizador y manda el mensaje de ganaste
         if (win) {
             state_label.setText("Ganaste!");
             time = 0;
