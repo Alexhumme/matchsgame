@@ -11,10 +11,8 @@ import java.awt.Image;
  * @author MARIA JOSE
  */
 public class game_menu extends javax.swing.JFrame {
-    fondovent fondo =new fondovent();
  
     public game_menu() {
-        this.setContentPane(fondo);
         initComponents();
     }
    
@@ -93,7 +91,7 @@ public class game_menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tema_panelLayout.createSequentialGroup()
-                        .addComponent(Tp_carta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Tp_carta, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                         .addGap(24, 24, 24))
                     .addGroup(tema_panelLayout.createSequentialGroup()
                         .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,7 +106,7 @@ public class game_menu extends javax.swing.JFrame {
                 .addComponent(Tp_carta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btn_aplicar)
                 .addGap(0, 0, 0))
         );
@@ -156,9 +154,9 @@ public class game_menu extends javax.swing.JFrame {
                 .addComponent(Tm_matriz)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tamañocmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_aplicartmñ)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         tiempo_panel.setMaximumSize(new java.awt.Dimension(104, 82));
@@ -188,7 +186,7 @@ public class game_menu extends javax.swing.JFrame {
         tiempo_panel.setLayout(tiempo_panelLayout);
         tiempo_panelLayout.setHorizontalGroup(
             tiempo_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
             .addGroup(tiempo_panelLayout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addContainerGap(49, Short.MAX_VALUE))
@@ -199,7 +197,7 @@ public class game_menu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         Play.setBackground(new java.awt.Color(255, 0, 102));
@@ -246,11 +244,11 @@ public class game_menu extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(TITULO, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tiempo_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tamaño_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tema_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(tema_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(tamaño_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
                 .addComponent(Play, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -384,17 +382,5 @@ public class game_menu extends javax.swing.JFrame {
     private javax.swing.JPanel tiempo_panel;
     private javax.swing.JComboBox<String> trj_temas;
     // End of variables declaration//GEN-END:variables
-class fondovent extends JPanel  {
-     private Image imagen;
-     @Override 
 
-      public void paint(Graphics g){     
-       imagen=new ImageIcon (getClass().getResource("/images/01.imagen.png")).getImage();
-       g.drawImage(imagen,0,0,getWidth(),getHeight(),this );
-       
-       setOpaque(false);
-       super.paint(g);
-       
-      }
-}
 }

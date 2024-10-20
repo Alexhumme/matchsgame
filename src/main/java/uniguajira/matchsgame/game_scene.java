@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -149,7 +150,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
 
     public MiniCard[] pair = new MiniCard[2];
     public MiniCard[] cards;
-
+    
     public game_scene(String theme, int size, boolean timer) {
         // recibir los valores que le mande el menu
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -157,6 +158,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         this.size = size;
         this.use_timer = timer;
         initComponents();
+
         start_game();
     }
 
@@ -310,7 +312,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
 
         pause_button.setBackground(new java.awt.Color(0, 102, 255));
         pause_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
-        pause_button.setText("pausa");
+        pause_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/pause_icon.png"))); // NOI18N
         pause_button.setToolTipText("");
         pause_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(255, 255, 255))));
         pause_button.setOpaque(true);
@@ -322,7 +324,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
 
         reset_button.setBackground(new java.awt.Color(51, 255, 51));
         reset_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
-        reset_button.setText("reiniciar");
+        reset_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/reset_icon.png"))); // NOI18N
         reset_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         reset_button.setOpaque(true);
         reset_button.addActionListener(new java.awt.event.ActionListener() {
@@ -333,7 +335,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
 
         exit_button.setBackground(new java.awt.Color(255, 0, 51));
         exit_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
-        exit_button.setText("salir");
+        exit_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/exit_icon.png"))); // NOI18N
         exit_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         exit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,8 +384,8 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(timer_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(timer_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(time_lable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(3, 3, 3))
         );
@@ -457,14 +459,23 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         this.dispose(); // esto cierra el frame
     }//GEN-LAST:event_exit_buttonActionPerformed
 
+    private ImageIcon pause_icon = new ImageIcon("/Images/interface/pause_icon.png");    
+    private ImageIcon resume_icon = new ImageIcon("/Images/interface/resume_icon.png");
+
+
     private void pause_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pause_buttonActionPerformed
         // pausar juego
+        
         pause = !pause; // cambia el estado de pausa
         if (pause) {
+            pause_button.setIcon(resume_icon);
             timer.stop();
         } else {
+            pause_button.setIcon(pause_icon);
             timer.start();
         }
+        pause_button.revalidate();
+        pause_button.repaint();
         // desactiva/activa las tarjetas que NO esten emparejadas (esas se debe quedar desactivadas)
         for (MiniCard card : cards) {
             if (!card.paired) {
