@@ -358,7 +358,7 @@
                 <Component class="javax.swing.JButton" name="exit_button">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="5f" green="57" red="db" type="rgb"/>
+                      <Color blue="60" green="58" id="Actions.Red" palette="3" red="db" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="PF Tempesta Five Condensed" size="14" style="0"/>

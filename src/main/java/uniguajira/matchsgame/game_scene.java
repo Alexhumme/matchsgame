@@ -30,6 +30,7 @@ class MiniCard extends JButton {
     public String theme;
     public boolean revealed = false;
     public boolean paired = false;
+    public ImageIcon icon;
 
     // este color es un gris azulado para cuando esten ocultas
     Color bgColor = new java.awt.Color(204, 204, 205);
@@ -46,6 +47,7 @@ class MiniCard extends JButton {
                         javax.swing.BorderFactory.createBevelBorder(
                                 javax.swing.border.BevelBorder.RAISED, null, null, null, Color.white)
                 ));
+        this.icon = new javax.swing.ImageIcon(getClass().getResource("/Images/"+theme+"/"+id+".png"));
     }
 
     public void reveal() { 
@@ -78,7 +80,7 @@ class MiniCard extends JButton {
         }
 
         this.setBackground(color);
-        this.setText(id);
+        this.setIcon(icon);
     }
 
     public void unreveal() {
@@ -88,6 +90,7 @@ class MiniCard extends JButton {
             revealed = false;
             this.setBackground(bgColor);
             this.setText("");
+            this.setIcon(null);
         }
     }
 
@@ -175,7 +178,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
     public void start_game() { 
         state_panel.setBackground(new java.awt.Color(204, 204, 255));
         state_label.setForeground(Color.BLACK);
-        state_label.setText("encuentra las parejas");
+        state_label.setText("empareja lo/as "+theme);
         this.win = true;
         this.pause = false;
         this.cards = null;
@@ -310,11 +313,11 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         timer_panel.setBackground(new java.awt.Color(204, 204, 255));
         timer_panel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2)));
 
-        pause_button.setBackground(new java.awt.Color(0, 102, 255));
+        pause_button.setBackground(new java.awt.Color(54, 159, 215));
         pause_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
         pause_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/pause_icon.png"))); // NOI18N
         pause_button.setToolTipText("");
-        pause_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(255, 255, 255))));
+        pause_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         pause_button.setOpaque(true);
         pause_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,7 +325,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
             }
         });
 
-        reset_button.setBackground(new java.awt.Color(51, 255, 51));
+        reset_button.setBackground(new java.awt.Color(87, 171, 104));
         reset_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
         reset_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/reset_icon.png"))); // NOI18N
         reset_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
@@ -333,7 +336,7 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
             }
         });
 
-        exit_button.setBackground(new java.awt.Color(255, 0, 51));
+        exit_button.setBackground(new java.awt.Color(219, 87, 95));
         exit_button.setFont(new java.awt.Font("PF Tempesta Five Condensed", 0, 14)); // NOI18N
         exit_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/exit_icon.png"))); // NOI18N
         exit_button.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
@@ -459,8 +462,8 @@ public final class game_scene extends javax.swing.JFrame implements ActionListen
         this.dispose(); // esto cierra el frame
     }//GEN-LAST:event_exit_buttonActionPerformed
 
-    private ImageIcon pause_icon = new ImageIcon("/Images/interface/pause_icon.png");    
-    private ImageIcon resume_icon = new ImageIcon("/Images/interface/resume_icon.png");
+    private ImageIcon pause_icon = new javax.swing.ImageIcon(getClass().getResource("/Images/interface/pause_icon.png"));    
+    private ImageIcon resume_icon = new javax.swing.ImageIcon(getClass().getResource("/Images/interface/resume_icon.png"));
 
 
     private void pause_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pause_buttonActionPerformed

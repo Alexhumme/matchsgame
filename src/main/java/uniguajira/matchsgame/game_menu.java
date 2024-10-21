@@ -11,9 +11,7 @@ import java.awt.Image;
  * @author MARIA JOSE
  */
 public class game_menu extends javax.swing.JFrame {
- fondovent fondo= new fondovent();
     public game_menu() {
-        this.setContentPane(fondo);
         initComponents();
     }
    
@@ -41,7 +39,7 @@ public class game_menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tiempo = new javax.swing.JToggleButton();
         Play = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        fondo_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -62,6 +60,7 @@ public class game_menu extends javax.swing.JFrame {
         tema_panel.setPreferredSize(new java.awt.Dimension(104, 82));
 
         Tp_carta.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        Tp_carta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Tp_carta.setText("Tipo Carta");
 
         trj_temas.setBackground(new java.awt.Color(0, 204, 204));
@@ -90,17 +89,14 @@ public class game_menu extends javax.swing.JFrame {
         tema_panelLayout.setHorizontalGroup(
             tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tema_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tema_panelLayout.createSequentialGroup()
-                        .addComponent(Tp_carta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(24, 24, 24))
-                    .addGroup(tema_panelLayout.createSequentialGroup()
-                        .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(tema_panelLayout.createSequentialGroup()
                 .addComponent(btn_aplicar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tema_panelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Tp_carta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(trj_temas, 0, 104, Short.MAX_VALUE))
+                .addContainerGap())
         );
         tema_panelLayout.setVerticalGroup(
             tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +104,7 @@ public class game_menu extends javax.swing.JFrame {
                 .addComponent(Tp_carta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_aplicar)
                 .addGap(0, 0, 0))
         );
@@ -118,6 +114,7 @@ public class game_menu extends javax.swing.JFrame {
         tamaño_panel.setOpaque(false);
 
         Tm_matriz.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        Tm_matriz.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Tm_matriz.setText("Tamaño: 4");
 
         tamañocmb.setBackground(new java.awt.Color(0, 204, 204));
@@ -146,9 +143,9 @@ public class game_menu extends javax.swing.JFrame {
         tamaño_panel.setLayout(tamaño_panelLayout);
         tamaño_panelLayout.setHorizontalGroup(
             tamaño_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Tm_matriz)
             .addComponent(tamañocmb, 0, 104, Short.MAX_VALUE)
             .addComponent(btn_aplicartmñ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Tm_matriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tamaño_panelLayout.setVerticalGroup(
             tamaño_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,6 +164,7 @@ public class game_menu extends javax.swing.JFrame {
         tiempo_panel.setPreferredSize(new java.awt.Dimension(104, 82));
 
         jLabel1.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Tiempo");
 
         tiempo.setBackground(new java.awt.Color(0, 204, 204));
@@ -189,9 +187,7 @@ public class game_menu extends javax.swing.JFrame {
         tiempo_panelLayout.setHorizontalGroup(
             tiempo_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tiempo, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-            .addGroup(tiempo_panelLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(49, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tiempo_panelLayout.setVerticalGroup(
             tiempo_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,14 +195,14 @@ public class game_menu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        Play.setBackground(new java.awt.Color(255, 0, 102));
+        Play.setBackground(new java.awt.Color(255, 51, 51));
         Play.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
         Play.setForeground(new java.awt.Color(255, 255, 255));
         Play.setText("JUGAR");
-        Play.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 51, 153), new java.awt.Color(255, 0, 153), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204)));
+        Play.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 0, 51), new java.awt.Color(255, 0, 51), new java.awt.Color(255, 204, 204), new java.awt.Color(255, 204, 204)));
         Play.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlayActionPerformed(evt);
@@ -234,18 +230,19 @@ public class game_menu extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addGroup(jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tiempo_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tema_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                    .addComponent(tema_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                     .addComponent(tamaño_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(34, 34, 34)
                 .addComponent(Play, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        Jpanel.add(jpanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 26, -1, -1));
+        Jpanel.add(jpanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/Mapa Mental Ahorro de Energía Moderno Verde.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        Jpanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 350));
+        fondo_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/Mapa Mental Ahorro de Energía Moderno Verde.png"))); // NOI18N
+        fondo_label.setText("jLabel2");
+        fondo_label.setOpaque(true);
+        Jpanel.add(fondo_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 390));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -348,8 +345,8 @@ public class game_menu extends javax.swing.JFrame {
     private javax.swing.JLabel Tp_carta;
     private javax.swing.JButton btn_aplicar;
     private javax.swing.JButton btn_aplicartmñ;
+    private javax.swing.JLabel fondo_label;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPanel jpanel1;
     private javax.swing.JPanel tamaño_panel;
@@ -359,14 +356,4 @@ public class game_menu extends javax.swing.JFrame {
     private javax.swing.JPanel tiempo_panel;
     private javax.swing.JComboBox<String> trj_temas;
     // End of variables declaration//GEN-END:variables
-class fondovent extends JPanel {
-    private Image imagen;
-    @Override
-    public void paint (Graphics g){
-        imagen=new ImageIcon(getClass().getResource("/Images.interface/imagen.png")).getImage();
-        g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-        setOpaque(false);
-        super.paint(g);
-    }
-}
 }
