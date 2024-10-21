@@ -32,7 +32,7 @@ class MiniCard extends JButton {
     public boolean paired = false;
 
     // este color es un gris azulado para cuando esten ocultas
-    Color bgColor = new java.awt.Color(204, 204, 255);
+    Color bgColor = new java.awt.Color(204, 204, 205);
 
    
     public MiniCard(String id, String theme) {
