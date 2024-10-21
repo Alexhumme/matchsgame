@@ -41,7 +41,7 @@ public class game_menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tiempo = new javax.swing.JToggleButton();
         Play = new javax.swing.JButton();
-        TITULO = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -50,6 +50,7 @@ public class game_menu extends javax.swing.JFrame {
         setResizable(false);
 
         Jpanel.setBackground(new java.awt.Color(255, 255, 255));
+        Jpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpanel1.setBackground(new java.awt.Color(255, 255, 255));
         jpanel1.setOpaque(false);
@@ -92,7 +93,7 @@ public class game_menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(tema_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tema_panelLayout.createSequentialGroup()
-                        .addComponent(Tp_carta, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                        .addComponent(Tp_carta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(24, 24, 24))
                     .addGroup(tema_panelLayout.createSequentialGroup()
                         .addComponent(trj_temas, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,7 +156,7 @@ public class game_menu extends javax.swing.JFrame {
                 .addComponent(Tm_matriz)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tamañocmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(btn_aplicartmñ)
                 .addGap(0, 0, 0))
         );
@@ -198,7 +199,7 @@ public class game_menu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         Play.setBackground(new java.awt.Color(255, 0, 102));
@@ -212,39 +213,25 @@ public class game_menu extends javax.swing.JFrame {
             }
         });
 
-        TITULO.setBackground(new java.awt.Color(255, 0, 102));
-        TITULO.setFont(new java.awt.Font("Showcard Gothic", 1, 18)); // NOI18N
-        TITULO.setForeground(new java.awt.Color(255, 51, 102));
-        TITULO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TITULO.setText("EMPAREJADOS");
-
         javax.swing.GroupLayout jpanel1Layout = new javax.swing.GroupLayout(jpanel1);
         jpanel1.setLayout(jpanel1Layout);
         jpanel1Layout.setHorizontalGroup(
             jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanel1Layout.createSequentialGroup()
-                .addGroup(jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jpanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(TITULO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jpanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(tema_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addGroup(jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tamaño_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(36, 36, 36)
-                        .addComponent(tiempo_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)))
-                .addContainerGap())
+                .addGap(34, 34, 34)
+                .addComponent(tema_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Play, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tamaño_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(tiempo_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
         jpanel1Layout.setVerticalGroup(
             jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(TITULO, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(78, 78, 78)
                 .addGroup(jpanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tiempo_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tema_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
@@ -254,22 +241,11 @@ public class game_menu extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout JpanelLayout = new javax.swing.GroupLayout(Jpanel);
-        Jpanel.setLayout(JpanelLayout);
-        JpanelLayout.setHorizontalGroup(
-            JpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JpanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jpanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        JpanelLayout.setVerticalGroup(
-            JpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JpanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jpanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        Jpanel.add(jpanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 26, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interface/Mapa Mental Ahorro de Energía Moderno Verde.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        Jpanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 350));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -368,12 +344,12 @@ public class game_menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Jpanel;
     private javax.swing.JButton Play;
-    private static javax.swing.JLabel TITULO;
     private javax.swing.JLabel Tm_matriz;
     private javax.swing.JLabel Tp_carta;
     private javax.swing.JButton btn_aplicar;
     private javax.swing.JButton btn_aplicartmñ;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPanel jpanel1;
     private javax.swing.JPanel tamaño_panel;
