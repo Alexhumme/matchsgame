@@ -2,7 +2,7 @@
 
 ## Creación de la cuadrícula:
 - [x] Generar una cuadrícula de tamaño configurable (por ejemplo, 4x4, 6x6).
-- [x]Cada celda de la cuadrícula contiene un "cuadro" que puede ser volteado para revelar su contenido.
+- [x] Cada celda de la cuadrícula contiene un "cuadro" que puede ser volteado para revelar su contenido.
 
 ## Contenido de las celdas:
 - [x] Cada cuadro tiene un contenido oculto (por ejemplo, una imagen o un número).
