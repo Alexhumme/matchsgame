@@ -28,9 +28,9 @@
 - [x] El temporizador debe empezar en cuanto el jugador voltea el primer cuadro.
 
 ## Sistema de puntuación (opcional):
-- [x] Asignar puntos por cada par encontrado.
-- [x] Restar puntos o dar penalizaciones por intentos fallidos.
-- [x] Registrar el tiempo tomado para completar el juego.
+- [ ] Asignar puntos por cada par encontrado.
+- [ ] Restar puntos o dar penalizaciones por intentos fallidos.
+- [ ] Registrar el tiempo tomado para completar el juego.
 
 # Funcionalidades Técnicas
 
@@ -64,7 +64,7 @@
 - [x] Definir temas (recolectar pngs de los temas)
 - [x] Mostrar listado de temas
 ## Sonidos y efectos (opcional):
-- [x] Agregar sonidos para cuando los cuadros coinciden o no coinciden.
+- [ ] Agregar sonidos para cuando los cuadros coinciden o no coinciden.
 
 ## Persistencia de resultados (opcional):
-- [x] Guardar los mejores tiempos o las puntuaciones más altas en un archivo o base de datos.
+- [ ] Guardar los mejores tiempos o las puntuaciones más altas en un archivo o base de datos.
